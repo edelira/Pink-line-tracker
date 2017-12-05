@@ -57,87 +57,12 @@ while True:
 
 
 
-	if '54th/Cermak' in trains:
+	trainList = ['54th/Cermak','Kostner','Pulaski','Central Park','Western',
+	             'Damen','18th','Polk','Ashland','Morgan','Clinton','Clark/Lake',
+	             'State/Lake','Randolph/Wabash','Adams/Wabash','Harold Washington Library-State/Van Buren,',
+	             'LaSalle/Van Buren','Washington/Wells','Cicero','Kedzie','California']
 
-		print "54th/Cermak"
-
-	if 'Kostner' in trains:
-
-		print "Kostner"
-
-	if 'Pulaski' in trains:
-
-		print "Pulaski"
-
-	if 'Central Park' in trains:
-
-		print "Central Park"
-
-	if 'Western' in trains:
-
-		print "Western"
-
-	if 'Damen' in trains:
-
-		print "Damen"
-
-	if '18th' in trains:
-
-		print "18th"
-
-	if 'Polk' in trains:
-
-		print "Polk"
-
-	if 'Ashland' in trains:
-
-		print "Ashland"
-
-	if 'Morgan' in trains:
-
-		print "Morgan"
-
-	if 'Clinton' in trains:
-
-		print "Clinton"
-
-	if 'Clark/Lake' in trains:
-
-		print "Clark/Lake"
-
-	if 'State/Lake' in trains:
-
-		print "State/Lake"
-
-	if 'Randolph/Wabash' in trains:
-
-		print "Randolph/Wabash"
-
-	if 'Adams/Wabash' in trains:
-
-		print "Adams/Wabash"
-
-	if 'Harold Washington Library-State/Van Buren' in trains:
-
-		print "Harold Washington Library-State/Van Buren"
-
-	if 'LaSalle/Van Buren' in trains:
-
-		print "LaSalle/Van Buren"
-
-	if 'Washington/Wells' in trains:
-
-		print "Washington/Wells"
-
-	if 'Cicero' in trains:
-
-		print "Cicero"
-
-	if 'Kedzie' in trains:
-
-		print "Kedzie"
-
-	if 'California' in trains:
-
-		print "California"
+	for i in trainList:
+	    if i in trains:
+	        print i
 
