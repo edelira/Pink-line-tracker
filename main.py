@@ -1,7 +1,7 @@
 import time
 from xml.dom import minidom
 import urllib
-
+import inflect # Correctly generate plurals, singular nouns, ordinals, indefinite articles; convert numbers to words
 
 API_key = "Place your API key here"
 
@@ -10,28 +10,27 @@ while True:
 	xml_str = urllib.urlopen(url_str).read()
 	xmldoc = minidom.parseString(xml_str)
 
-	nextStaNm = xmldoc.getElementsByTagName('nextStaNm')
+	nextStaNm = xmldoc.getElementsByTagName('nextStaNm') #
 
-	train_zero = train_one = train_two = train_three = train_four = train_five = train_six = ""
-
-	train_check = [train_zero,train_one,train_two,train_three,train_four,train_five,train_six]
-
-	j = 0
-	for train in train_check:
-		try:
-			train = nextStaNm[j].firstChild.nodeValue
-			j += 1
+	current_trains = []
+	j = 0 #with multiple nextStaNm values, we need to go through the XML for multiple values. J will be used soon.
+	p = inflect.engine() #this is used to convert numbers to words
+	for train in range(10): #for loop to go through loop 10 times
+		try: #using try because the number of trains available at once changes. program would crash when looking for a value that doesn't exist.
+			train = nextStaNm[j].firstChild.nodeValue # allows code to scan through XML and parse each section containing 'nextStaNm'
+			j += 1 # add one to each loop to continue parsing XML
+			print (p.ordinal(j) + " train is at " + train)
+			current_trains.append(train)
+		except IndexError: #used for error handling preventing program from crashing when program tries to find a train number that doesn't exists
+			train = 'null'
 			print train
-			print j
-		except IndexError:
-			i = 'null'
-			print i
-	# prints all base:OBS_VALUE in the XML doc
+	# prints all nextStaNm in the XML doc
 
-	print "Active trains below"
-	trains = []
-	trains.extend((train_zero,train_one,train_two,train_three,train_four,train_five,train_six))
-	print  ', '.join(trains)
+	print  ', '.join(current_trains)
+	time.sleep(5) # pause added to refresh program every 5 seconds to prevent request from hitting request cap.
+
+''' CODE BELOW IS INCOMPLETE AND WILL BE USED WHEN WIRING LED STRIP TO Pi
+
 
 	trainList = ['54th/Cermak','Kostner','Pulaski','Central Park','Western',
 	             'Damen','18th','Polk','Ashland','Morgan','Clinton','Clark/Lake',
@@ -41,4 +40,6 @@ while True:
 	for i in trainList:
 	    if i in trains:
 	        print i
-	time.sleep(5)
+'''
+
+
